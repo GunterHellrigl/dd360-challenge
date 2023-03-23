@@ -15,6 +15,18 @@ class Character {
     required this.events,
   });
 
+  Character.compact({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.thumbnailURI,
+  }) {
+    comics = [];
+    series = [];
+    stories = [];
+    events = [];
+  }
+
   late final int id;
   late final String name;
   late final String description;

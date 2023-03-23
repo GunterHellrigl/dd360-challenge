@@ -1,6 +1,6 @@
 import 'package:dd3challenge/domain/models/comic.dart';
 
 abstract class ComicRepository {
-  List<Comic> getComics();
-  Comic getComicBy({int id});
+  Future<List<Comic>?> getComics();
+  Future<Comic?> getComicBy({required int id});
 }

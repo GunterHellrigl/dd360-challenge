@@ -313,15 +313,11 @@ class Urls {
 
 extension GetCharactersResponseExtension on Results {
   Character toDomain() {
-    return Character(
+    return Character.compact(
       id: id,
       name: name,
       description: description,
       thumbnailURI: "${thumbnail.path}.${thumbnail.extension}",
-      comics: [],
-      series: [],
-      stories: [],
-      events: [],
     );
   }
 }
