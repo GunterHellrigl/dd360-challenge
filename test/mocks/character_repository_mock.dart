@@ -18,8 +18,30 @@ class CharacterRepositoryMock implements CharacterRepository {
 
   @override
   List<Comic> getCharacterComics({required int characterId}) {
-    // TODO: implement getCharacterComics
-    throw UnimplementedError();
+    if (withValues) {
+      return [
+        Comic(
+          id: 1,
+          title: "Title 1",
+          description: "Description 1",
+          thumbnailURI: "thumbnailURI 1",
+        ),
+        Comic(
+          id: 2,
+          title: "Title 2",
+          description: "Description 2",
+          thumbnailURI: "thumbnailURI 2",
+        ),
+        Comic(
+          id: 3,
+          title: "Title 3",
+          description: "Description 3",
+          thumbnailURI: "thumbnailURI 3",
+        )
+      ];
+    }
+
+    return [];
   }
 
   @override
