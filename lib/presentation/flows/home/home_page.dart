@@ -61,6 +61,27 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
+                const SizedBox(height: 10),
+                const Text(
+                  "Series",
+                  style: kPrimaryTextStyle,
+                ),
+                Obx(
+                  () => ImageList(
+                    width: 150,
+                    height: 170,
+                    isLoading: controller.isLoadingSeries.value,
+                    imageItems: controller.series
+                        .map((e) => ImageItem(id: e.id, imageURI: e.thumbnailURI))
+                        .toList(),
+                    onTapItem: (int id) {
+                      print("tapped the image item: $id");
+                    },
+                    onTapSeeMore: () {
+                      print("tapped on 'see more' button");
+                    },
+                  ),
+                ),
               ],
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:dd3challenge/domain/models/serie.dart';
 
 abstract class SerieRepository {
-  List<Serie> getSeries();
-  Serie getSerieBy({int id});
+  Future<List<Serie>?> getSeries();
+  Future<Serie?> getSerieBy({required int id});
 }
