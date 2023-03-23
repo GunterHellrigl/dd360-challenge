@@ -15,9 +15,9 @@ class MarvelApiDataSource implements RemoteDataSource {
   final GetConnect connect = GetConnect();
 
   @override
-  Future<List<Character>?> getCharacters() async {
+  Future<List<Character>?> getCharacters(int offset, int limit) async {
     Response response = await connect.get(
-        "$base_url/v1/public/characters?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+        "$base_url/v1/public/characters?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetCharactersResponse data = GetCharactersResponse.fromJson(response.body);
@@ -30,9 +30,9 @@ class MarvelApiDataSource implements RemoteDataSource {
   }
 
   @override
-  Future<List<Comic>?> getComics() async {
+  Future<List<Comic>?> getComics(int offset, int limit) async {
     Response response = await connect.get(
-        "$base_url/v1/public/comics?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+        "$base_url/v1/public/comics?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetComicsResponse data = GetComicsResponse.fromJson(response.body);
@@ -45,9 +45,9 @@ class MarvelApiDataSource implements RemoteDataSource {
   }
 
   @override
-  Future<List<Serie>?> getSeries() async {
+  Future<List<Serie>?> getSeries(int offset, int limit) async {
     Response response = await connect.get(
-        "$base_url/v1/public/series?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+        "$base_url/v1/public/series?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetSeriesResponse data = GetSeriesResponse.fromJson(response.body);

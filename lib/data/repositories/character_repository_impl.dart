@@ -44,7 +44,7 @@ class CharacterRepositoryImpl implements CharacterRepository {
   }
 
   @override
-  Future<List<Character>?> getCharacters() {
-    return remoteDataSource.getCharacters();
+  Future<List<Character>?> getCharacters(int offset, int limit) {
+    return remoteDataSource.getCharacters(offset, limit);
   }
 }

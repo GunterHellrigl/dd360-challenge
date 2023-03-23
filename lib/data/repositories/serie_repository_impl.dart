@@ -16,7 +16,7 @@ class SerieRepositoryImpl implements SerieRepository {
   }
 
   @override
-  Future<List<Serie>?> getSeries() {
-    return remoteDataSource.getSeries();
+  Future<List<Serie>?> getSeries(int offset, int limit) {
+    return remoteDataSource.getSeries(offset, limit);
   }
 }

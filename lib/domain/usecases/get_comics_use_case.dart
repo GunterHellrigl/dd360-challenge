@@ -8,7 +8,7 @@ class GetComicsUseCase {
 
   late final ComicRepository comicRepository;
 
-  Future<List<Comic>?> execute() async {
-    return await comicRepository.getComics();
+  Future<List<Comic>?> execute(int offset, int limit) async {
+    return await comicRepository.getComics(offset, limit);
   }
 }

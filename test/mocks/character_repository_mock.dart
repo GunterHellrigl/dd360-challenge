@@ -63,7 +63,7 @@ class CharacterRepositoryMock implements CharacterRepository {
   }
 
   @override
-  Future<List<Character>> getCharacters() {
+  Future<List<Character>> getCharacters(int offset, int limit) {
     if (withValues) {
       return Future.value([
         Character(

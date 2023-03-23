@@ -8,7 +8,7 @@ class GetSeriesUseCase {
 
   late final SerieRepository serieRepository;
 
-  Future<List<Serie>?> execute() async {
-    return await serieRepository.getSeries();
+  Future<List<Serie>?> execute(int offset, int limit) async {
+    return await serieRepository.getSeries(offset, limit);
   }
 }

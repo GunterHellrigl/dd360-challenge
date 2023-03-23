@@ -1,19 +1,19 @@
 import 'package:dd3challenge/domain/models/character.dart';
 import 'package:dd3challenge/domain/models/comic.dart';
 import 'package:dd3challenge/domain/models/serie.dart';
-import 'package:dd3challenge/domain/usecases/get_all_characters_use_case.dart';
+import 'package:dd3challenge/domain/usecases/get_characters_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_comics_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_series_use_case.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   HomeController({
-    required this.getAllCharactersUseCase,
+    required this.getCharactersUseCase,
     required this.getComicsUseCase,
     required this.getSeriesUseCase,
   });
 
-  final GetAllCharactersUseCase getAllCharactersUseCase;
+  final GetCharactersUseCase getCharactersUseCase;
   final GetComicsUseCase getComicsUseCase;
   final GetSeriesUseCase getSeriesUseCase;
 
@@ -36,7 +36,7 @@ class HomeController extends GetxController {
   }
 
   void _getCharacters() async {
-    List<Character>? list = await getAllCharactersUseCase.execute();
+    List<Character>? list = await getCharactersUseCase.execute(0, 3);
 
     if (list == null) {
       print("ERROR!");
@@ -49,7 +49,7 @@ class HomeController extends GetxController {
   }
 
   void _getComics() async {
-    List<Comic>? list = await getComicsUseCase.execute();
+    List<Comic>? list = await getComicsUseCase.execute(0, 3);
 
     if (list == null) {
       print("ERROR!");
@@ -62,7 +62,7 @@ class HomeController extends GetxController {
   }
 
   void _getSeries() async {
-    List<Serie>? list = await getSeriesUseCase.execute();
+    List<Serie>? list = await getSeriesUseCase.execute(0, 3);
 
     if (list == null) {
       print("ERROR!");

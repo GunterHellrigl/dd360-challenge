@@ -16,7 +16,7 @@ class ComicRepositoryImpl implements ComicRepository {
   }
 
   @override
-  Future<List<Comic>?> getComics() {
-    return remoteDataSource.getComics();
+  Future<List<Comic>?> getComics(int offset, int limit) {
+    return remoteDataSource.getComics(offset, limit);
   }
 }
