@@ -6,21 +6,21 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mocks/character_repository_mock.dart';
 
 void main() {
-  test("test when there are characters", () {
+  test("test when there are characters", () async {
     CharacterRepository repository = CharacterRepositoryMock(withValues: true);
 
     GetAllCharactersUseCase useCase = GetAllCharactersUseCase(characterRepository: repository);
-    List<Character> characters = useCase.execute();
+    List<Character>? characters = await useCase.execute();
 
-    expect(characters.length, 2);
+    expect(characters?.length, 2);
   });
 
-  test("test when there are not characters", () {
+  test("test when there are not characters", () async {
     CharacterRepository repository = CharacterRepositoryMock(withValues: false);
 
     GetAllCharactersUseCase useCase = GetAllCharactersUseCase(characterRepository: repository);
-    List<Character> characters = useCase.execute();
+    List<Character>? characters = await useCase.execute();
 
-    expect(characters.length, 0);
+    expect(characters?.length, 0);
   });
 }

@@ -8,7 +8,7 @@ class GetAllCharactersUseCase {
 
   late final CharacterRepository characterRepository;
 
-  List<Character> execute() {
-    return characterRepository.getCharacters();
+  Future<List<Character>?> execute() async {
+    return await characterRepository.getCharacters();
   }
 }

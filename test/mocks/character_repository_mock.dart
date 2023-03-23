@@ -63,9 +63,9 @@ class CharacterRepositoryMock implements CharacterRepository {
   }
 
   @override
-  List<Character> getCharacters() {
+  Future<List<Character>> getCharacters() {
     if (withValues) {
-      return [
+      return Future.value([
         Character(
           id: 1,
           name: "Test 1",
@@ -86,9 +86,9 @@ class CharacterRepositoryMock implements CharacterRepository {
           stories: [],
           events: [],
         )
-      ];
+      ]);
     }
 
-    return [];
+    return Future.value([]);
   }
 }

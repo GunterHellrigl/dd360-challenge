@@ -17,12 +17,12 @@ void main() {
     expect(comics.length, 3);
   });
 
-  test("test when the character has not comics", () {
+  test("test when the character has not comics", () async {
     CharacterRepository repository = CharacterRepositoryMock(withValues: false);
 
     GetAllCharactersUseCase useCase = GetAllCharactersUseCase(characterRepository: repository);
-    List<Character> characters = useCase.execute();
+    List<Character>? characters = await useCase.execute();
 
-    expect(characters.length, 0);
+    expect(characters?.length, 0);
   });
 }
