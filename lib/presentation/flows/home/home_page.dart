@@ -35,6 +35,7 @@ class HomePage extends StatelessWidget {
                     onTapItem: (int id) {
                       print("tapped the image item: $id");
                     },
+                    showSeeMoreButton: true,
                     onTapSeeMore: () {
                       print("tapped on 'see more' button");
                     },
@@ -56,6 +57,7 @@ class HomePage extends StatelessWidget {
                     onTapItem: (int id) {
                       print("tapped the image item: $id");
                     },
+                    showSeeMoreButton: true,
                     onTapSeeMore: () {
                       print("tapped on 'see more' button");
                     },
@@ -77,6 +79,7 @@ class HomePage extends StatelessWidget {
                     onTapItem: (int id) {
                       print("tapped the image item: $id");
                     },
+                    showSeeMoreButton: true,
                     onTapSeeMore: () {
                       print("tapped on 'see more' button");
                     },

@@ -9,7 +9,8 @@ class ImageList extends StatelessWidget {
     required this.isLoading,
     required this.imageItems,
     required this.onTapItem,
-    required this.onTapSeeMore,
+    required this.showSeeMoreButton,
+    this.onTapSeeMore,
   }) : super(key: key);
 
   final double width;
@@ -17,11 +18,12 @@ class ImageList extends StatelessWidget {
   final bool isLoading;
   final List<ImageItem> imageItems;
   final Function(int id) onTapItem;
-  final Function() onTapSeeMore;
+  final bool showSeeMoreButton;
+  final Function()? onTapSeeMore;
 
   @override
   Widget build(BuildContext context) {
-    if (!imageItems.contains(ImageItem.buttonSeeMore)) {
+    if (showSeeMoreButton && !imageItems.contains(ImageItem.buttonSeeMore)) {
       imageItems.add(ImageItem.buttonSeeMore);
     }
 
@@ -38,7 +40,7 @@ class ImageList extends StatelessWidget {
                     constraints: BoxConstraints.tightFor(width: width),
                     child: TextButton(
                       onPressed: () {
-                        onTapSeeMore();
+                        if (onTapSeeMore != null) onTapSeeMore!();
                       },
                       child: const Text("See more"),
                     ),
