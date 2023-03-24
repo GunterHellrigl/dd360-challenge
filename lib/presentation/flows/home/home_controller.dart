@@ -4,6 +4,7 @@ import 'package:dd3challenge/domain/models/serie.dart';
 import 'package:dd3challenge/domain/usecases/get_characters_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_comics_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_series_use_case.dart';
+import 'package:dd3challenge/presentation/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -72,5 +73,12 @@ class HomeController extends GetxController {
     series.clear();
     series.addAll(list);
     isLoadingSeries.value = false;
+  }
+
+  void goToCharacterPage(int id) {
+    Get.toNamed(
+      AppRoutes.character,
+      arguments: {"id": id},
+    );
   }
 }

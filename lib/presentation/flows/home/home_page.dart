@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
                         .toList(),
                     onTapItem: (int id) {
                       print("tapped the image item: $id");
+                      controller.goToCharacterPage(id);
                     },
                     showSeeMoreButton: true,
                     onTapSeeMore: () {
