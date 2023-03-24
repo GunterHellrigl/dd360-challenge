@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:dd3challenge/data/datasources/remote_datasource.dart';
 import 'package:dd3challenge/data/models/get_character_comics_response.dart';
 import 'package:dd3challenge/data/models/get_character_events_response.dart';
@@ -17,14 +19,23 @@ import 'package:dd3challenge/domain/models/story.dart';
 import 'package:get/get_connect.dart';
 
 class MarvelApiDataSource implements RemoteDataSource {
-  static const String base_url = "https://gateway.marvel.com:443/";
+  static const String baseUrl = "https://gateway.marvel.com:443/";
+  static const String apiKey = "fea4ddbf370376865724c2b03db5ffef";
+  static const String privateKey = "dcca949708ec8a3a3b97cf51cacf65cd98a314c4";
 
   final GetConnect connect = GetConnect();
 
+  String _createHash(int ts) {
+    return md5.convert(utf8.encode("${ts.toString()}$privateKey$apiKey")).toString();
+  }
+
   @override
   Future<List<Character>?> getCharacters(int offset, int limit) async {
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
     Response response = await connect.get(
-        "$base_url/v1/public/characters?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
+        "$baseUrl/v1/public/characters?apikey=$apiKey&hash=$hash&ts=$ts&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetCharactersResponse data = GetCharactersResponse.fromJson(response.body);
@@ -38,8 +49,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Comic>?> getComics(int offset, int limit) async {
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
     Response response = await connect.get(
-        "$base_url/v1/public/comics?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
+        "$baseUrl/v1/public/comics?apikey=$apiKey&hash=$hash&ts=$ts&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetComicsResponse data = GetComicsResponse.fromJson(response.body);
@@ -53,8 +67,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Serie>?> getSeries(int offset, int limit) async {
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
     Response response = await connect.get(
-        "$base_url/v1/public/series?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856&offset=$offset&limit=$limit");
+        "$baseUrl/v1/public/series?apikey=$apiKey&hash=$hash&ts=$ts&offset=$offset&limit=$limit");
 
     if (response.isOk) {
       GetSeriesResponse data = GetSeriesResponse.fromJson(response.body);
@@ -68,8 +85,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<Character?> getCharacterById(int id) async {
-    Response response = await connect.get(
-        "$base_url/v1/public/characters/$id?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
+    Response response =
+        await connect.get("$baseUrl/v1/public/characters/$id?apikey=$apiKey&hash=$hash&ts=$ts");
 
     if (response.isOk) {
       GetCharacterResponse data = GetCharacterResponse.fromJson(response.body);
@@ -83,8 +103,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Comic>?> getComicsBy({required int characterId}) async {
-    Response response = await connect.get(
-        "$base_url/v1/public/characters/$characterId/comics?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
+    Response response = await connect
+        .get("$baseUrl/v1/public/characters/$characterId/comics?apikey=$apiKey&hash=$hash&ts=$ts");
 
     if (response.isOk) {
       GetCharacterComicsResponse data = GetCharacterComicsResponse.fromJson(response.body);
@@ -98,8 +121,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Event>?> getEventsBy({required int characterId}) async {
-    Response response = await connect.get(
-        "$base_url/v1/public/characters/$characterId/events?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
+    Response response = await connect
+        .get("$baseUrl/v1/public/characters/$characterId/events?apikey=$apiKey&hash=$hash&ts=$ts");
 
     if (response.isOk) {
       GetCharacterEventsResponse data = GetCharacterEventsResponse.fromJson(response.body);
@@ -113,8 +139,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Serie>?> getSeriesBy({required int characterId}) async {
-    Response response = await connect.get(
-        "$base_url/v1/public/characters/$characterId/series?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
+    Response response = await connect
+        .get("$baseUrl/v1/public/characters/$characterId/series?apikey=$apiKey&hash=$hash&ts=$ts");
 
     if (response.isOk) {
       GetCharacterSeriesResponse data = GetCharacterSeriesResponse.fromJson(response.body);
@@ -128,8 +157,11 @@ class MarvelApiDataSource implements RemoteDataSource {
 
   @override
   Future<List<Story>?> getStoriesBy({required int characterId}) async {
-    Response response = await connect.get(
-        "$base_url/v1/public/characters/$characterId/stories?apikey=fea4ddbf370376865724c2b03db5ffef&hash=c3de3454e8dc6486f0e30e8f937745fe&ts=1677784856");
+    final int ts = DateTime.now().millisecondsSinceEpoch;
+    final String hash = _createHash(ts);
+
+    Response response = await connect
+        .get("$baseUrl/v1/public/characters/$characterId/stories?apikey=$apiKey&hash=$hash&ts=$ts");
 
     if (response.isOk) {
       GetCharacterStoriesResponse data = GetCharacterStoriesResponse.fromJson(response.body);
