@@ -1,5 +1,6 @@
 import 'package:dd3challenge/presentation/constants/text_styles.dart';
 import 'package:dd3challenge/presentation/flows/home/home_controller.dart';
+import 'package:dd3challenge/presentation/states.dart';
 import 'package:dd3challenge/presentation/widgets/image_list/image_item.dart';
 import 'package:dd3challenge/presentation/widgets/image_list/image_list.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
                   () => ImageList(
                     width: 150,
                     height: 170,
-                    isLoading: controller.isLoadingCharacters.value,
+                    isLoading: controller.stateCharacters.value == States.LOADING,
                     imageItems: controller.characters
                         .map((e) => ImageItem(id: e.id, imageURI: e.thumbnailURI))
                         .toList(),
@@ -53,7 +54,7 @@ class HomePage extends StatelessWidget {
                   () => ImageList(
                     width: 150,
                     height: 170,
-                    isLoading: controller.isLoadingComics.value,
+                    isLoading: controller.stateComics.value == States.LOADING,
                     imageItems: controller.comics
                         .map((e) => ImageItem(id: e.id, imageURI: e.thumbnailURI))
                         .toList(),
@@ -83,7 +84,7 @@ class HomePage extends StatelessWidget {
                   () => ImageList(
                     width: 150,
                     height: 170,
-                    isLoading: controller.isLoadingSeries.value,
+                    isLoading: controller.stateSeries.value == States.LOADING,
                     imageItems: controller.series
                         .map((e) => ImageItem(id: e.id, imageURI: e.thumbnailURI))
                         .toList(),

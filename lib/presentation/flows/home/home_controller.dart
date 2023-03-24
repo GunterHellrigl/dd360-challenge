@@ -5,6 +5,7 @@ import 'package:dd3challenge/domain/usecases/get_characters_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_comics_use_case.dart';
 import 'package:dd3challenge/domain/usecases/get_series_use_case.dart';
 import 'package:dd3challenge/presentation/routes/app_routes.dart';
+import 'package:dd3challenge/presentation/states.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -18,13 +19,13 @@ class HomeController extends GetxController {
   final GetComicsUseCase getComicsUseCase;
   final GetSeriesUseCase getSeriesUseCase;
 
-  RxBool isLoadingCharacters = RxBool(true);
+  Rx<States> stateCharacters = Rx(States.LOADING);
   RxList<Character> characters = RxList();
 
-  RxBool isLoadingComics = RxBool(true);
+  Rx<States> stateComics = Rx(States.LOADING);
   RxList<Comic> comics = RxList();
 
-  RxBool isLoadingSeries = RxBool(true);
+  Rx<States> stateSeries = Rx(States.LOADING);
   RxList<Serie> series = RxList();
 
   @override
@@ -40,39 +41,39 @@ class HomeController extends GetxController {
     List<Character>? list = await getCharactersUseCase.execute(0, 3);
 
     if (list == null) {
-      print("ERROR!");
+      stateCharacters.value = States.ERROR;
       return;
     }
 
     characters.clear();
     characters.addAll(list);
-    isLoadingCharacters.value = false;
+    stateCharacters.value = States.COMPLETED;
   }
 
   void _getComics() async {
     List<Comic>? list = await getComicsUseCase.execute(0, 7);
 
     if (list == null) {
-      print("ERROR!");
+      stateComics.value = States.ERROR;
       return;
     }
 
     comics.clear();
     comics.addAll(list);
-    isLoadingComics.value = false;
+    stateComics.value = States.COMPLETED;
   }
 
   void _getSeries() async {
     List<Serie>? list = await getSeriesUseCase.execute(0, 7);
 
     if (list == null) {
-      print("ERROR!");
+      stateSeries.value = States.ERROR;
       return;
     }
 
     series.clear();
     series.addAll(list);
-    isLoadingSeries.value = false;
+    stateSeries.value = States.COMPLETED;
   }
 
   void goToCharacterPage(int id) {
