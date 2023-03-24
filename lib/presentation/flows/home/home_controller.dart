@@ -81,4 +81,10 @@ class HomeController extends GetxController {
       arguments: {"id": id},
     );
   }
+
+  void goToCharacterListPage() {
+    Get.toNamed(
+      AppRoutes.characterList,
+    );
+  }
 }

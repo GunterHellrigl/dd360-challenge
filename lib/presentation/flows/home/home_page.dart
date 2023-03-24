@@ -13,6 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -33,12 +36,11 @@ class HomePage extends StatelessWidget {
                         .map((e) => ImageItem(id: e.id, imageURI: e.thumbnailURI))
                         .toList(),
                     onTapItem: (int id) {
-                      print("tapped the image item: $id");
                       controller.goToCharacterPage(id);
                     },
                     showSeeMoreButton: true,
                     onTapSeeMore: () {
-                      print("tapped on 'see more' button");
+                      controller.goToCharacterListPage();
                     },
                   ),
                 ),
