@@ -50,7 +50,7 @@ class HomeController extends GetxController {
   }
 
   void _getComics() async {
-    List<Comic>? list = await getComicsUseCase.execute(0, 3);
+    List<Comic>? list = await getComicsUseCase.execute(0, 7);
 
     if (list == null) {
       print("ERROR!");
@@ -63,7 +63,7 @@ class HomeController extends GetxController {
   }
 
   void _getSeries() async {
-    List<Serie>? list = await getSeriesUseCase.execute(0, 3);
+    List<Serie>? list = await getSeriesUseCase.execute(0, 7);
 
     if (list == null) {
       print("ERROR!");
