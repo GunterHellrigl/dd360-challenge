@@ -8,13 +8,13 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mocks/character_repository_mock.dart';
 
 void main() {
-  test("test when the character has comics", () {
+  test("test when the character has comics", () async {
     CharacterRepository repository = CharacterRepositoryMock(withValues: true);
 
     GetCharacterComicsUseCase useCase = GetCharacterComicsUseCase(characterRepository: repository);
-    List<Comic> comics = useCase.execute(characterId: 1);
+    List<Comic>? comics = await useCase.execute(characterId: 1);
 
-    expect(comics.length, 3);
+    expect(comics?.length, 3);
   });
 
   test("test when the character has not comics", () async {

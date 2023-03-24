@@ -11,15 +11,15 @@ class CharacterRepositoryMock implements CharacterRepository {
   final bool withValues;
 
   @override
-  Character getCharacterBy({required int id}) {
+  Future<Character?> getCharacterBy({required int id}) {
     // TODO: implement getCharacterBy
     throw UnimplementedError();
   }
 
   @override
-  List<Comic> getCharacterComics({required int characterId}) {
+  Future<List<Comic>?> getCharacterComics({required int characterId}) {
     if (withValues) {
-      return [
+      return Future.value([
         Comic(
           id: 1,
           title: "Title 1",
@@ -38,26 +38,26 @@ class CharacterRepositoryMock implements CharacterRepository {
           description: "Description 3",
           thumbnailURI: "thumbnailURI 3",
         )
-      ];
+      ]);
     }
 
-    return [];
+    return Future.value([]);
   }
 
   @override
-  List<Event> getCharacterEvents({required int characterId}) {
+  Future<List<Event>?> getCharacterEvents({required int characterId}) {
     // TODO: implement getCharacterEvents
     throw UnimplementedError();
   }
 
   @override
-  List<Serie> getCharacterSeries({required int characterId}) {
+  Future<List<Serie>?> getCharacterSeries({required int characterId}) {
     // TODO: implement getCharacterSeries
     throw UnimplementedError();
   }
 
   @override
-  List<Story> getCharacterStories({required int characterId}) {
+  Future<List<Story>?> getCharacterStories({required int characterId}) {
     // TODO: implement getCharacterStories
     throw UnimplementedError();
   }

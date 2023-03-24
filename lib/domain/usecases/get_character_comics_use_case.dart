@@ -8,7 +8,7 @@ class GetCharacterComicsUseCase {
 
   late final CharacterRepository characterRepository;
 
-  List<Comic> execute({required int characterId}) {
+  Future<List<Comic>?> execute({required int characterId}) {
     return characterRepository.getCharacterComics(characterId: characterId);
   }
 }

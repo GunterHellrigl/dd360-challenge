@@ -14,33 +14,28 @@ class CharacterRepositoryImpl implements CharacterRepository {
   final RemoteDataSource remoteDataSource;
 
   @override
-  Character getCharacterBy({required int id}) {
-    // TODO: implement getCharacterBy
-    throw UnimplementedError();
+  Future<Character?> getCharacterBy({required int id}) {
+    return remoteDataSource.getCharacterById(id);
   }
 
   @override
-  List<Comic> getCharacterComics({required int characterId}) {
-    // TODO: implement getCharacterComics
-    throw UnimplementedError();
+  Future<List<Comic>?> getCharacterComics({required int characterId}) {
+    return remoteDataSource.getComicsBy(characterId: characterId);
   }
 
   @override
-  List<Event> getCharacterEvents({required int characterId}) {
-    // TODO: implement getCharacterEvents
-    throw UnimplementedError();
+  Future<List<Event>?> getCharacterEvents({required int characterId}) {
+    return remoteDataSource.getEventsBy(characterId: characterId);
   }
 
   @override
-  List<Serie> getCharacterSeries({required int characterId}) {
-    // TODO: implement getCharacterSeries
-    throw UnimplementedError();
+  Future<List<Serie>?> getCharacterSeries({required int characterId}) {
+    return remoteDataSource.getSeriesBy(characterId: characterId);
   }
 
   @override
-  List<Story> getCharacterStories({required int characterId}) {
-    // TODO: implement getCharacterStories
-    throw UnimplementedError();
+  Future<List<Story>?> getCharacterStories({required int characterId}) {
+    return remoteDataSource.getStoriesBy(characterId: characterId);
   }
 
   @override
